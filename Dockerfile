@@ -1,9 +1,5 @@
 FROM php:8.3-fpm
 
-# Arguments defined in docker-compose.yml
-ARG user
-ARG uid
-
 ## Versão da Lib do Redis para PHP
 ARG REDIS_LIB_VERSION=6.0.2
 
@@ -23,9 +19,6 @@ RUN apt-get update && apt-get install -y \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions with MySQL
-# RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-
 # Install PHP extensions with Postgres
 RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd zip
 
@@ -42,11 +35,6 @@ RUN chmod -R 755 /var/www \
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
-
 # Set working directory
 WORKDIR /var/www
 
@@ -58,5 +46,3 @@ COPY composer.json /var/www/
 
 # Run composer install with --ignore-platform-reqs
 RUN composer install --no-scripts --ignore-platform-reqs
-
-USER $user

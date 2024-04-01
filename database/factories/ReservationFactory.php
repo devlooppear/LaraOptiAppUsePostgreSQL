@@ -14,13 +14,11 @@ class ReservationFactory extends Factory
 
     public function definition(): array
     {
-        $reservationId = Redis::incr('reservation_ids');
 
         $user = User::factory()->create();
         $book = Book::factory()->create();
 
         return [
-            'id' => $reservationId,
             'user_id' => $user->id,
             'book_id' => $book->id,
             'reservation_date' => $this->faker->dateTimeBetween('-1 month', '+1 month'),

@@ -38,4 +38,4 @@ Build and run the Docker containers:
 docker-compose up --build
 ```
 
-Access the application at http://localhost:8000.
+Access the application at http://localhost:80.

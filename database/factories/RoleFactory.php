@@ -13,10 +13,8 @@ class RoleFactory extends Factory
     public function definition()
     {
         $redisKey = 'role_ids';
-        $id = Redis::incr($redisKey);
 
         return [
-            'id' => $id,
             'name' => $this->faker->unique()->randomElement(['User', 'Librarian']),
         ];
     }

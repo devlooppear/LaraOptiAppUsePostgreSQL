@@ -12,10 +12,7 @@ class PermissionFactory extends Factory
 
     public function definition(): array
     {
-        $permissionId = Redis::incr('permission_ids');
-
         return [
-            'id' => $permissionId,
             'name' => $this->faker->unique()->word,
         ];
     }

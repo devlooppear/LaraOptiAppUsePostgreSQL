@@ -12,10 +12,8 @@ class BookFactory extends Factory
 
     public function definition(): array
     {
-        $bookId = Redis::incr('book_ids');
 
         return [
-            'id' => $bookId,
             'title' => $this->faker->sentence,
             'author' => $this->faker->name,
             'category' => $this->faker->word,
