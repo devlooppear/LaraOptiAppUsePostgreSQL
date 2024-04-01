@@ -1,16 +1,14 @@
 services:
     app:
-        image: devlooppear/larapgsnginx:1.0
-        container_name: larapgsnginx
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        image: devlooppear
+        container_name: devlooppear-app
         restart: unless-stopped
-        ports:
-            - "9000:9000"
         working_dir: /var/www/
         volumes:
             - ./:/var/www
-        args:
-            user: devlooppear
-            uid: 1000
         networks:
             - devlooppear
 

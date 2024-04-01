@@ -25,24 +25,26 @@ RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd zip
 # Install and enable the Redis extension
 RUN pecl install redis-${REDIS_LIB_VERSION} && docker-php-ext-enable redis
 
+# Set working directory
+WORKDIR /var/www
+
 # Copy application code
-COPY . /var/www
+COPY . .
+
+# Remove existing log file and create a new one
+RUN rm -f storage/logs/laravel.log && touch storage/logs/laravel.log && chmod 775 storage/logs/laravel.log
 
 # Set permissions for specific directories
-RUN chmod -R 755 /var/www \
-    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+RUN chmod -R 755 storage bootstrap/cache
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Set working directory
-WORKDIR /var/www
 
 # Remove existing vendor directory and composer.lock
 RUN rm -rf vendor composer.lock
 
 # Copy the composer.json file
-COPY composer.json /var/www/
+COPY composer.json .
 
 # Run composer install with --ignore-platform-reqs
 RUN composer install --no-scripts --ignore-platform-reqs
