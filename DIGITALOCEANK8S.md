@@ -111,10 +111,10 @@ and
 kubectl apply -f deployment.yaml
 ```
 
-## To check the IP Address about the deploy:
+## To check your nodes:
 
 ```bash
-kubectl get svc laravel-service -o wide
+kubectl get svc
 ```
 
 ## Deleting all in k8s

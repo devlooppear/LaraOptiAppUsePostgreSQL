@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: laravel-app
-        image: devlooppear/larapgsnginx:1.0
+        image: devlooppear/larapgsnginx:1.0.2
         ports:
         - containerPort: 9000
         volumeMounts:
