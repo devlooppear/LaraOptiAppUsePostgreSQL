@@ -1,37 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pgsql-service
+  name: devlooppear-nginx
 spec:
   selector:
-    app: pgsql
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
-  type: NodePort
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-spec:
-  selector:
-    app: nginx
+    app: devlooppear-app
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: NodePort
-
+  type: LoadBalancer
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-service
+  name: devlooppear-redis
 spec:
   selector:
     app: redis
@@ -39,24 +22,17 @@ spec:
     - protocol: TCP
       port: 6379
       targetPort: 6379
-  type: NodePort
-
+  type: ClusterIP
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: mailpit-service
+  name: devlooppear-postgresql
 spec:
   selector:
-    app: mailpit
+    app: pgsql
   ports:
-    - name: smtp
-      protocol: TCP
-      port: 1025
-      targetPort: 1025
-    - name: dashboard
-      protocol: TCP
-      port: 8025
-      targetPort: 8025
-  type: NodePort
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: ClusterIP

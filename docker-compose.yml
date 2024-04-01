@@ -14,6 +14,8 @@ services:
 
         image: devlooppear/larapgsnginx:1.0.2
         container_name: larapgsnginx
+        ports:
+            - "9000"
         restart: unless-stopped
         working_dir: /var/www/
         volumes:

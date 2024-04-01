@@ -111,10 +111,16 @@ and
 kubectl apply -f deployment.yaml
 ```
 
-## To check your nodes:
+## To check your service:
 
 ```bash
 kubectl get svc
+```
+
+## To get pod:
+
+```bash
+kubectl get pods
 ```
 
 ## Deleting all in k8s
