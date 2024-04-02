@@ -31,11 +31,10 @@ WORKDIR /var/www
 # Copy application code
 COPY . .
 
-# Remove existing log file and create a new one
-RUN rm -f storage/logs/laravel.log && touch storage/logs/laravel.log && chmod 777 storage/logs/laravel.log
+# Set broad permissions for the storage directory
+RUN chmod 777 storage/
 
-# Set permissions for specific directories
-RUN chmod -R 755 storage bootstrap/cache
+RUN chown -R www-data:www-data storage/
 
 # Get the latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
