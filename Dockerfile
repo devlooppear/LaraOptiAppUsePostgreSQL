@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-## Versão da Lib do Redis para PHP
+## Version of Redis library for PHP
 ARG REDIS_LIB_VERSION=6.0.2
 
 # Install system dependencies
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions with Postgres
+# Install PHP extensions with PostgreSQL
 RUN docker-php-ext-install pdo_pgsql mbstring exif pcntl bcmath gd zip
 
 # Install and enable the Redis extension
@@ -32,12 +32,12 @@ WORKDIR /var/www
 COPY . .
 
 # Remove existing log file and create a new one
-RUN rm -f storage/logs/laravel.log && touch storage/logs/laravel.log && chmod 775 storage/logs/laravel.log
+RUN rm -f storage/logs/laravel.log && touch storage/logs/laravel.log && chmod 777 storage/logs/laravel.log
 
 # Set permissions for specific directories
 RUN chmod -R 755 storage bootstrap/cache
 
-# Get latest Composer
+# Get the latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Remove existing vendor directory and composer.lock

@@ -128,3 +128,9 @@ kubectl get pods
 ```bash
 kubectl delete pod,service,deployment,statefulset,daemonset,replicaset,job,cronjob --all
 ```
+
+## Deleting one service:
+
+```bash
+kubectl delete svc <service-name>
+```
