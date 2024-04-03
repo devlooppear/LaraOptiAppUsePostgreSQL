@@ -5,7 +5,7 @@ services:
             dockerfile: Dockerfile
         image: devlooppear
         ports:
-            - "9000:9000"
+            - 9000:9000
         container_name: devlooppear-app
         restart: unless-stopped
         working_dir: /var/www/
@@ -17,7 +17,7 @@ services:
         # image: devlooppear/larapgsnginx:1.0.2
         # container_name: larapgsnginx
         # ports:
-        #     - "9000:9000"
+        #     - 9000:9000
         # restart: unless-stopped
         # working_dir: /var/www/
         # volumes:
