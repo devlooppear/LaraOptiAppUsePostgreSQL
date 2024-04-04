@@ -13,6 +13,7 @@ services:
             - ./:/var/www
         networks:
             - devlooppear
+            
         # image: devlooppear/larapgsnginx:1.0.5
         # container_name: larapgsnginx
         # ports:
