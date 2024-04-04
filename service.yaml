@@ -1,38 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: devlooppear-nginx
+  name: larapgsnginx
 spec:
-  selector:
-    app: devlooppear-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
   type: LoadBalancer
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: devlooppear-redis
-spec:
   selector:
-    app: redis
+    app: larapgsnginx
   ports:
-    - protocol: TCP
-      port: 6379
-      targetPort: 6379
-  type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: devlooppear-postgresql
-spec:
-  selector:
-    app: pgsql
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
-  type: ClusterIP
+  - protocol: TCP
+    port: 9000
+    targetPort: 9000

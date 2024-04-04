@@ -1,38 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devlooppear-app
+  name: larapgsnginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: devlooppear-app
+      app: larapgsnginx
   template:
     metadata:
       labels:
-        app: devlooppear-app
+        app: larapgsnginx
     spec:
       containers:
-        - name: app
-          image: devlooppear/larapgsnginx:1.0.2
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - name: app-volume
-              mountPath: /var/www
-      volumes:
-        - name: app-volume
-          emptyDir: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: devlooppear-app
-spec:
-  selector:
-    app: devlooppear-app
-  ports:
-    - protocol: TCP
-      port: 80      
-      targetPort: 80     
-  type: ClusterIP
+      - name: larapgsnginx
+        image: devlooppear/larapgsnginx:1.0.5
+        ports:
+        - containerPort: 9000

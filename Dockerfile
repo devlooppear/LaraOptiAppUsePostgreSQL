@@ -47,3 +47,6 @@ COPY composer.json .
 
 # Run composer install with --ignore-platform-reqs
 RUN composer install --no-scripts --ignore-platform-reqs
+
+# Case disable nginx
+# CMD php artisan serve --host=0.0.0.0 --port 9000
