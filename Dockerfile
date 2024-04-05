@@ -33,11 +33,9 @@ COPY . .
 
 # Set broad permissions for the storage directory
 
-RUN rm -rf storage/logs
-
 RUN chmod u+x storage/
 
-RUN chmod 777 storage/
+RUN chmod -R 777 storage/
 
 RUN chown -R www-data:www-data storage/
 
