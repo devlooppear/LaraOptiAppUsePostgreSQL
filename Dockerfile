@@ -45,6 +45,10 @@ RUN rm -rf vendor composer.lock
 # Copy the composer.json file
 COPY composer.json .
 
+# Copy SSL certificate and private key
+COPY ./docker-compose/nginx/ssl/certificate.crt /etc/nginx/ssl/certificate.crt
+COPY ./docker-compose/nginx/ssl/private.key /etc/nginx/ssl/private.key
+
 # Run composer install with --ignore-platform-reqs
 RUN composer install --no-scripts --ignore-platform-reqs
 
