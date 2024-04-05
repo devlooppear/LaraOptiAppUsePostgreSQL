@@ -14,7 +14,7 @@ services:
         # networks:
         #     - devlooppear
 
-        image: devlooppear/larapgsnginx:1.0.8
+        image: devlooppear/larapgsnginx:1.0.9
         container_name: larapgsnginx
         ports:
             - 9000:9000
