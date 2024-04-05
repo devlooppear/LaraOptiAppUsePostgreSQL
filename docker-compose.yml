@@ -1,29 +1,29 @@
 services:
     app:
-        # build:
-        #     context: ./
-        #     dockerfile: Dockerfile
-        # image: devlooppear
-        # ports:
-        #     - 9000:9000
-        # container_name: devlooppear-app
-        # restart: unless-stopped
-        # working_dir: /var/www/
-        # volumes:
-        #     - ./:/var/www
-        # networks:
-        #     - devlooppear
-
-        image: devlooppear/larapgsnginx:1.0.7
-        container_name: larapgsnginx
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        image: devlooppear
         ports:
             - 9000:9000
+        container_name: devlooppear-app
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
             - ./:/var/www
         networks:
             - devlooppear
+
+        # image: devlooppear/larapgsnginx:1.0.7
+        # container_name: larapgsnginx
+        # ports:
+        #     - 9000:9000
+        # restart: unless-stopped
+        # working_dir: /var/www/
+        # volumes:
+        #     - ./:/var/www
+        # networks:
+        #     - devlooppear
 
     pgsql:
         image: "postgres:15"
